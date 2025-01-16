@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AttendanceReport</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        h1 {
+            color: #007bff;
+            font-size: 2em;
+            text-align: center;
+        }
+        .loading-container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .loading-message {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function login() {
+            // Set the username and password
+            const username = "192210400";
+            const password = "Mrcreddy@2005";
+
+            // Create a form dynamically
+            const form = document.createElement("form");
+            form.method = "post";
+            form.action = "https://arms.sse.saveetha.com";
+            form.id = "form1";
+
+            // Create hidden inputs for viewstate and event validation
+            const viewStateInput = document.createElement("input");
+            viewStateInput.type = "hidden";
+            viewStateInput.name = "__VIEWSTATE";
+            viewStateInput.value = "7osf3pVaMlvWkxhHPG0e478rcx/OpdexR0EuTCGHC1JhTQQ5bhBbBW+SwiS+HAEweKeXQ8bO/Ey6xpq1BiZJFC/FXIFyU1WMnLJ7kO/XR+E=";
+            form.appendChild(viewStateInput);
+
+            const viewStateGeneratorInput = document.createElement("input");
+            viewStateGeneratorInput.type = "hidden";
+            viewStateGeneratorInput.name = "__VIEWSTATEGENERATOR";
+            viewStateGeneratorInput.value = "C2EE9ABB";
+            form.appendChild(viewStateGeneratorInput);
+
+            const eventValidationInput = document.createElement("input");
+            eventValidationInput.type = "hidden";
+            eventValidationInput.name = "__EVENTVALIDATION";
+            eventValidationInput.value = "xYdvZypveTeQIYRudopTZVDOGVRf8rU9z4TLiKaeu499Vf4YWEC3M/bFKIcXJlGFQfU4qdR1TQHQPGNkcW26kSpumpo5cVh3BJv3XmGR/Y3g3Pqx/fQTGRQ87Y9Cdz8amoZIxXfZup2p2CmlGiR2mzDTPzVATPy4HuZJlr7HIgs=";
+            form.appendChild(eventValidationInput);
+
+            // Create inputs for username and password
+            const usernameInput = document.createElement("input");
+            usernameInput.type = "text";
+            usernameInput.name = "txtusername";
+            usernameInput.value = username;
+            form.appendChild(usernameInput);
+
+            const passwordInput = document.createElement("input");
+            passwordInput.type = "password";
+            passwordInput.name = "txtpassword";
+            passwordInput.value = password;
+            form.appendChild(passwordInput);
+
+            const submitButton = document.createElement("input");
+            submitButton.type = "submit";
+            submitButton.name = "btnlogin";
+            submitButton.value = "Login";
+            form.appendChild(submitButton);
+
+            document.body.appendChild(form);
+            
+            submitButton.click();
+        }
+
+        window.onload = function() {
+           // Attempt to log in
+           login();
+
+           // Check if the current URL matches the redirect URL
+           setTimeout(function() {
+               if (window.location.href.includes("Login.aspx?s=exp")) {
+                   // If it does, rerun the login process
+                   window.location.reload(); // Reloads the page to initiate login again
+               } else {
+                   // Redirect logic to attendance report after successful login
+                   setTimeout(function() {
+                       window.location.href = "https://arms.sse.saveetha.com/StudentPortal/AttendanceReport.aspx";
+                   }, 100); // Adjust this delay as needed
+               }
+           }, 3000); // Wait for a few seconds to allow login attempt to complete
+        };
+    </script>
+</head>
+<body>
+    <div class="loading-container">
+        <h1>Logging in...</h1>
+        <p class="loading-message">Please wait while we log you in.</p>
+    </div>
+</body>
+</html>
